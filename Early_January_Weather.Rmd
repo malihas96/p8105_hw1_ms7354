@@ -24,11 +24,25 @@ nrow(early_january_weather) # number of rows
 ncol(early_january_weather) # number of columns
 ```
 
-`In this first problem we will look at the behavior of the ggplot for different types of variables. The "early_january_weather" dataset has hourly meteorological data for LGA,JFK and EWR from January 2013. The size of the dataset is 358 rows and 15 columns. It has 15 variables and their names are as follows:`
+`In this first problem we will look at the behavior of the ggplot for different types of variables. The "early_january_weather" dataset has hourly meteorological data for LGA,JFK and EWR from January 2013. The size of the dataset is 358 rows and 15 columns. It has 15 variables and their names are:`
 
-```{r}
-colnames(early_january_weather) # names of variables
-```
+*   origin
+
+*   year,month,day, hour, (for recording time)
+
+*   temp, dewp (that are measured in F)
+
+*   humid
+
+*   wind_dir, wind_speed, wind_gust (wind direction in degrees) and (gust speed in mph)
+
+*   precip (precipiitation, in inches)
+
+*   visib (in miles)
+
+*   time_hour (date and hour of the recording)`
+
+
 ```{r}
 mean(early_january_weather$temp) # mean temperature
 ```
@@ -98,4 +112,17 @@ pull(sugar_df,sugar_grt_ten)
 pull(sugar_df,fruit)
 pull(sugar_df,sugar_level)
 ```
+
+#### Converting variables from one type to another using as.numeric
+```{r, eval =FALSE}
+as.numeric(sugar_df$sugar_grt_ten)
+```
+```{r, eval= FALSE}
+as.numeric(sugar_df$fruit)
+```
+```{r, eval= FALSE}
+as.numeric(sugar_df$sugar_level)
+```
+
+`When I used the as.numeric function to convert the logical, character and factor to numeric variable it did convert it for logical and factor but it doesn't make sense to take a mean for those values. For example, the logical variable when converted to numeric becomes 0 and 1 and the mean for that wouldn't be the same as what was computed for the numeric variable. Likewise, when the factor was converted to numeric it only produced the levels 1,2 and 3. There was no numeric conversion observed for character variable.`
 
