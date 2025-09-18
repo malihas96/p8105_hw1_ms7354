@@ -408,7 +408,7 @@ their names are as follows:</p>
 ##     lapply(plot, grid.draw)
 ##     invisible(filename)
 ## }
-## &lt;bytecode: 0x000001a1e77aec48&gt;
+## &lt;bytecode: 0x000001e4c17738c8&gt;
 ## &lt;environment: namespace:ggplot2&gt;</code></pre>
 <p>What I can observe from the scatterplot above is that as the
 temperature fluctuates between 40 degrees Farenheit to about 60 degrees
@@ -434,7 +434,7 @@ fictional dataframe I created so it is inaccurate.</p>
      fruit = vec_char,
      sugar_level = vec_factor
      )</code></pre>
-<pre class="r"><code>sugar_df</code></pre>
+<pre class="r"><code>(sugar_df)</code></pre>
 <pre><code>##    sugar_amount sugar_grt_ten       fruit sugar_level
 ## 1    -1.2070657         FALSE       apple      medium
 ## 2     0.2774292          TRUE      banana      medium
@@ -446,6 +446,21 @@ fictional dataframe I created so it is inaccurate.</p>
 ## 8    -0.5466319         FALSE      lychee         low
 ## 9    -0.5644520         FALSE   pineapple      medium
 ## 10   -0.8900378         FALSE       mango         low</code></pre>
+<pre class="r"><code>mean(sugar_df$sugar_amount) #mean for sugar_amount</code></pre>
+<pre><code>## [1] -0.3831574</code></pre>
+<pre class="r"><code>mean(sugar_df$sugar_grt_ten) #mean for sugar_grt_ten</code></pre>
+<pre><code>## [1] 0.4</code></pre>
+<pre class="r"><code>mean(sugar_df$fruit)        #mean for fruit</code></pre>
+<pre><code>## Warning in mean.default(sugar_df$fruit): argument is not numeric or logical:
+## returning NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>mean(sugar_df$sugar_level)  # mean for sugar_level</code></pre>
+<pre><code>## Warning in mean.default(sugar_df$sugar_level): argument is not numeric or
+## logical: returning NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>When I took the mean of each variable I noticed that only the mean
+for sugar_amount (-0.38) and sugar_grt_0 (0.4) were populated. For the
+other two categorical variables no mean was populated.</p>
 </div>
 
 

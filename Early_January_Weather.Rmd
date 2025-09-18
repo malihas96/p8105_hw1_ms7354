@@ -75,8 +75,20 @@ sugar_df <- data.frame(
 
 
 ```{r}
-sugar_df
+(sugar_df)
 ```
 
+
+```{r}
+mean(sugar_df$sugar_amount) #mean for sugar_amount
+
+mean(sugar_df$sugar_grt_ten) #mean for sugar_grt_ten
+
+mean(sugar_df$fruit)        #mean for fruit
+
+mean(sugar_df$sugar_level)  # mean for sugar_level
+```
+
+When I took the mean of each variable I noticed that only the mean for sugar_amount (-0.38) and sugar_grt_0 (0.4) were populated. For the other two categorical variables no mean was populated.
 
 
