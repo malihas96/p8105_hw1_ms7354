@@ -5,22 +5,25 @@ Maliha Safdar (ms7354)
 
 ``` r
 library(moderndive)
-library(ggplot2)
-data("early_january_weather", package = "moderndive")
-knitr::opts_chunk$set(dev = "ragg_png")   # use ragg instead of base png()
-
-  ?moderndive::early_january_weather
+library(tidyverse)
 ```
 
-    ## starting httpd help server ... done
+    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+    ## ✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+    ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+    ## ✔ purrr     1.1.0     
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+``` r
+data("early_january_weather", package = "moderndive")
+```
 
 #### **Problem 1: Solution**
-
-In this first problem we will look at the behavior of the ggplot for
-different types of variables. The “early_january_weather” dataset has
-hourly meteorological data for LGA,JFK and EWR from January 2013. The
-size of the dataset is 358 rows and 15 columns. It has 15 variables and
-their names are as follows:
 
 ``` r
 nrow(early_january_weather) # number of rows
@@ -33,6 +36,8 @@ ncol(early_january_weather) # number of columns
 ```
 
     ## [1] 15
+
+`In this first problem we will look at the behavior of the ggplot for different types of variables. The "early_january_weather" dataset has hourly meteorological data for LGA,JFK and EWR from January 2013. The size of the dataset is 358 rows and 15 columns. It has 15 variables and their names are as follows:`
 
 ``` r
 colnames(early_january_weather) # names of variables
@@ -48,19 +53,9 @@ mean(early_january_weather$temp) # mean temperature
 
     ## [1] 39.58212
 
-The mean temperature is 39.58 F.
+`The mean temperature is 39.58 F.`
 
 ##### Scatterplot for Temperature versus Time
-
-``` r
-install.packages("ggplot2")
-```
-
-    ## Warning: package 'ggplot2' is in use and will not be installed
-
-``` r
-library(ggplot2)
-```
 
 ``` r
 ggplot(early_january_weather, aes(x=time_hour, y=temp, color = humid)) +
@@ -70,55 +65,20 @@ ggplot(early_january_weather, aes(x=time_hour, y=temp, color = humid)) +
 ![](Early_January_Weather_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
-ggsave
+ggsave("scatter_plot.pdf", height = 4, width = 6)
 ```
 
-    ## function (filename, plot = get_last_plot(), device = NULL, path = NULL, 
-    ##     scale = 1, width = NA, height = NA, units = c("in", "cm", 
-    ##         "mm", "px"), dpi = 300, limitsize = TRUE, bg = NULL, 
-    ##     create.dir = FALSE, ...) 
-    ## {
-    ##     filename <- validate_path(path, filename, create.dir)
-    ##     dpi <- parse_dpi(dpi)
-    ##     dev <- validate_device(device, filename, dpi = dpi)
-    ##     dim <- plot_dim(c(width, height), scale = scale, units = units, 
-    ##         limitsize = limitsize, dpi = dpi)
-    ##     bg <- get_plot_background(plot, bg)
-    ##     old_dev <- grDevices::dev.cur()
-    ##     dev(filename = filename, width = dim[1], height = dim[2], 
-    ##         bg = bg, ...)
-    ##     on.exit(utils::capture.output({
-    ##         grDevices::dev.off()
-    ##         if (old_dev > 1) grDevices::dev.set(old_dev)
-    ##     }))
-    ##     if (!is_bare_list(plot)) {
-    ##         plot <- list(plot)
-    ##     }
-    ##     lapply(plot, grid.draw)
-    ##     invisible(filename)
-    ## }
-    ## <bytecode: 0x000002562ea3d348>
-    ## <environment: namespace:ggplot2>
-
-What I can observe from the scatterplot above is that as the temperature
-fluctuates between 40 degrees Farenheit to about 60 degrees Fareheit as
-time increases. The humidity can be seen to increase in the midpoint of
-Jan 7th and Jan 14th when the temperature is around 49 degrees
-Farenheit.
+`What I can observe from the scatterplot above is that as the temperature fluctuates between 40 degrees Farenheit to about 60 degrees Fareheit as time increases. The humidity can be seen to increase in the midpoint of Jan 7th and Jan 14th when the temperature is around 49 degrees Farenheit.`
 
 #### **Problem 2: Solution**
 
-The sugar_df is a data frame that has information of amount of sugar in
-different fruits and the level of sugar each one has. It is a fictional
-dataframe I created so it is inaccurate.
+`The sugar_df is a data frame that has information of amount of sugar in different fruits and the level of sugar each one has. It is a fictional dataframe I created so it is inaccurate.`
 
 ``` r
-set.seed(1234)
    vec_numeric = rnorm(10)
    vec_logical = vec_numeric > 0
    vec_char = c("apple","banana","cherry","dragonfruit","elderberry","fig","grapes","lychee","pineapple","mango")
-   levels3 <- c("low", "medium", "high")
-     vec_factor = factor(sample(levels3, size = 10, replace = TRUE), levels3)
+     vec_factor = factor(c("high sugar level","high sugar level","medium sugar level","low sugar level","low sugar level","medium sugar level","medium sugar level","low sugar level","high sugar level","medium sugar level"))
 ```
 
 ``` r
@@ -134,29 +94,29 @@ sugar_df <- data.frame(
 (sugar_df)
 ```
 
-    ##    sugar_amount sugar_grt_ten       fruit sugar_level
-    ## 1    -1.2070657         FALSE       apple      medium
-    ## 2     0.2774292          TRUE      banana      medium
-    ## 3     1.0844412          TRUE      cherry      medium
-    ## 4    -2.3456977         FALSE dragonfruit         low
-    ## 5     0.4291247          TRUE  elderberry        high
-    ## 6     0.5060559          TRUE         fig        high
-    ## 7    -0.5747400         FALSE      grapes        high
-    ## 8    -0.5466319         FALSE      lychee         low
-    ## 9    -0.5644520         FALSE   pineapple      medium
-    ## 10   -0.8900378         FALSE       mango         low
+    ##    sugar_amount sugar_grt_ten       fruit        sugar_level
+    ## 1    -0.1511875         FALSE       apple   high sugar level
+    ## 2     0.2745772          TRUE      banana   high sugar level
+    ## 3     0.4957547          TRUE      cherry medium sugar level
+    ## 4    -0.7099769         FALSE dragonfruit    low sugar level
+    ## 5    -0.7732686         FALSE  elderberry    low sugar level
+    ## 6    -0.3176869         FALSE         fig medium sugar level
+    ## 7    -0.8104137         FALSE      grapes medium sugar level
+    ## 8    -0.1947511         FALSE      lychee    low sugar level
+    ## 9     1.2468437          TRUE   pineapple   high sugar level
+    ## 10   -0.8924190         FALSE       mango medium sugar level
 
 ``` r
 mean(sugar_df$sugar_amount) #mean for sugar_amount
 ```
 
-    ## [1] -0.3831574
+    ## [1] -0.1832528
 
 ``` r
 mean(sugar_df$sugar_grt_ten) #mean for sugar_grt_ten
 ```
 
-    ## [1] 0.4
+    ## [1] 0.3
 
 ``` r
 mean(sugar_df$fruit)        #mean for fruit
@@ -176,6 +136,37 @@ mean(sugar_df$sugar_level)  # mean for sugar_level
 
     ## [1] NA
 
-When I took the mean of each variable I noticed that only the mean for
-sugar_amount (-0.38) and sugar_grt_0 (0.4) were populated. For the other
-two categorical variables no mean was populated.
+`When I took the mean of each variable I noticed that only the mean for sugar_amount (-0.38) and sugar_grt_0 (0.4) were populated. For the other two categorical variables no mean was populated.`
+
+#### Using the pull function
+
+`I pulled my variables from my sugar_df.`
+
+``` r
+pull(sugar_df,sugar_amount)
+```
+
+    ##  [1] -0.1511875  0.2745772  0.4957547 -0.7099769 -0.7732686 -0.3176869
+    ##  [7] -0.8104137 -0.1947511  1.2468437 -0.8924190
+
+``` r
+pull(sugar_df,sugar_grt_ten)
+```
+
+    ##  [1] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+
+``` r
+pull(sugar_df,fruit)
+```
+
+    ##  [1] "apple"       "banana"      "cherry"      "dragonfruit" "elderberry" 
+    ##  [6] "fig"         "grapes"      "lychee"      "pineapple"   "mango"
+
+``` r
+pull(sugar_df,sugar_level)
+```
+
+    ##  [1] high sugar level   high sugar level   medium sugar level low sugar level   
+    ##  [5] low sugar level    medium sugar level medium sugar level low sugar level   
+    ##  [9] high sugar level   medium sugar level
+    ## Levels: high sugar level low sugar level medium sugar level
