@@ -1,0 +1,48 @@
+---
+title: "Homework 1"
+author: "Maliha Safdar"
+date: "2025-09-18"
+output: html_document
+---
+
+```{r setup, include=FALSE, message=FALSE}
+library(moderndive)
+library(ggplot2)
+data("early_january_weather", package = "moderndive")
+knitr::opts_chunk$set(dev = "ragg_png")   # use ragg instead of base png()
+
+  ?moderndive::early_january_weather
+```
+
+
+### Problem 1: Solution
+
+In this first problem we will look at the behavior of the ggplot for different types of variables. The "early_january_weather" dataset has hourly meteorilogical data for LGA,JFK and EWR from January 2013. The size of the dataset is 358 rows and 15 columns. It has 15 variables and their names are as follows:
+
+```{r}
+nrow(early_january_weather) # number of rows
+
+ncol(early_january_weather) # number of columns
+
+colnames(early_january_weather) # names of variables
+```
+```{r}
+mean(early_january_weather$temp) # mean temperature
+```
+
+The mean temperature is 39.85 F.
+
+### Scatterplot for Temperature versus Time
+
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+
+```{r}
+ggplot(early_january_weather, aes(x=time_hour, y=temp, color = humid)) +
+  geom_point()
+```
+
+What I can observe from the scatterplot above is that as the temperature fluctuates between 40 degrees Farenheit to about 60 degrees Fareheit as time increases. The humidity can be seen to increase in the midpoint of Jan 7th and Jan 14th when the temperature is around 49 degrees Farenheit.
