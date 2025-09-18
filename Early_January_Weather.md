@@ -3,11 +3,22 @@ Homework 1
 Maliha Safdar (ms7354)
 2025-09-18
 
+``` r
+library(moderndive)
+library(ggplot2)
+data("early_january_weather", package = "moderndive")
+knitr::opts_chunk$set(dev = "ragg_png")   # use ragg instead of base png()
+
+  ?moderndive::early_january_weather
+```
+
+    ## starting httpd help server ... done
+
 #### **Problem 1: Solution**
 
 In this first problem we will look at the behavior of the ggplot for
 different types of variables. The “early_january_weather” dataset has
-hourly meteorilogical data for LGA,JFK and EWR from January 2013. The
+hourly meteorological data for LGA,JFK and EWR from January 2013. The
 size of the dataset is 358 rows and 15 columns. It has 15 variables and
 their names are as follows:
 
@@ -37,7 +48,7 @@ mean(early_january_weather$temp) # mean temperature
 
     ## [1] 39.58212
 
-The mean temperature is 39.85 F.
+The mean temperature is 39.58 F.
 
 ##### Scatterplot for Temperature versus Time
 
@@ -56,7 +67,7 @@ ggplot(early_january_weather, aes(x=time_hour, y=temp, color = humid)) +
   geom_point()
 ```
 
-![](Early_January_Weather_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](Early_January_Weather_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 ggsave
@@ -86,7 +97,7 @@ ggsave
     ##     lapply(plot, grid.draw)
     ##     invisible(filename)
     ## }
-    ## <bytecode: 0x000002cb75b40318>
+    ## <bytecode: 0x000002562ea3d348>
     ## <environment: namespace:ggplot2>
 
 What I can observe from the scatterplot above is that as the temperature
