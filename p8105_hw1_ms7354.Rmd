@@ -13,7 +13,7 @@ library(moderndive)
 library(tidyverse)
 data("early_january_weather", package = "moderndive")
 ```
-```{r, eval=FALSE}
+```{r}
 summary(early_january_weather)
 ```
 
@@ -27,7 +27,7 @@ nrow(early_january_weather) # number of rows
 ncol(early_january_weather) # number of columns
 ```
 
-`In this first problem we will look at the behavior of the ggplot for different types of variables. The "early_january_weather" dataset has hourly meteorological data for LGA,JFK and EWR from January 2013. The size of the dataset is 358 rows and 15 columns. It has 15 variables and their names along with certain important values for some variables I identified are:`
+`In this first problem we will look at the behavior of the ggplot for different types of variables. The "early_january_weather" dataset has hourly meteorological data for LGA,JFK and EWR from January 2013. The size of the dataset is 358 rows and 15 columns. It has 15 variables and their names are:`
 
 *   origin
 
@@ -35,17 +35,11 @@ ncol(early_january_weather) # number of columns
 
 *   temp, dewp (that are measured in F)
 
-*   humid, mean = 65.48
+*   humid
 
-*   wind_dir (wind direction in degrees)
+*   wind_dir, wind_speed, wind_gust (wind direction in degrees) and (gust speed in mph)
 
-*   wind_speed (in mph), mean = 8.226 mph
-
-*   wind_gust (in mph)
-
-*   precip (precipitation, in inches), mean = 0.002039 in
-
-*   pressure, mean = 1023
+*   precip (precipiitation, in inches)
 
 *   visib (in miles)
 
@@ -109,11 +103,11 @@ mean(sugar_df$fruit)        #mean for fruit
 mean(sugar_df$sugar_level)  # mean for sugar_level
 ```
 
-`When I took the mean of each variable I noticed that only the mean for my numeric variable, sugar_amount (-0.38) logical variable, sugar_grt_0 (0.4) were populated. For the other two categorical variables no mean was populated. Furthermore, the mean for the logical variable is just the sum of 1 and 0 (which are values for "TRUE" and "FALSE") which does not really reprsent the mean.`
+`When I took the mean of each variable I noticed that only the mean for sugar_amount (-0.38) and sugar_grt_0 (0.4) were populated. For the other two categorical variables no mean was populated.`
 
 #### Using the pull function
 
-`The tidyverse has already been loaded so I didn't load it again. I pulled my variables from my sugar_df.`
+`I pulled my variables from my sugar_df.`
 
 ```{r}
 pull(sugar_df,sugar_amount)
@@ -133,5 +127,5 @@ as.numeric(sugar_df$fruit)
 as.numeric(sugar_df$sugar_level)
 ```
 
-`When I used the as.numeric function to convert the logical, character and factor to numeric variable it did convert to numeric variables for logical and factor but it doesn't make sense to take a mean for those values. For example, the logical variable when converted to numeric becomes 0 and 1 and the mean for that wouldn't be the same as what was computed for the numeric variable. Likewise, when the factor was converted to numeric it only produced the levels 1,2 and 3. There was no numeric conversion observed for character variable.`
+`When I used the as.numeric function to convert the logical, character and factor to numeric variable it did convert it for logical and factor but it doesn't make sense to take a mean for those values. For example, the logical variable when converted to numeric becomes 0 and 1 and the mean for that wouldn't be the same as what was computed for the numeric variable. Likewise, when the factor was converted to numeric it only produced the levels 1,2 and 3. There was no numeric conversion observed for character variable.`
 
