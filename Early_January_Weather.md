@@ -3,6 +3,8 @@ P8105_HW1_ms7354
 Maliha Safdar
 2025-09-18
 
+#### **Problem 1: Solution**
+
 ``` r
 library(moderndive)
 library(tidyverse)
@@ -27,8 +29,6 @@ data("early_january_weather", package = "moderndive")
 summary(early_january_weather)
 ```
 
-#### **Problem 1: Solution**
-
 ``` r
 nrow(early_january_weather) # number of rows
 ```
@@ -41,7 +41,7 @@ ncol(early_january_weather) # number of columns
 
     ## [1] 15
 
-`In this first problem we will look at the behavior of the ggplot for different types of variables. The "early_january_weather" dataset has hourly meteorological data for LGA,JFK and EWR from January 2013. The size of the dataset is 358 rows and 15 columns. It has 15 variables and their names along with certain important values for some variables I identified are:`
+`The "early_january_weather" dataset has hourly meteorological data for LGA,JFK and EWR from January 2013. The size of the dataset is 358 rows and 15 columns. It has 15 variables and their names along with certain important values for some variables I identified are:`
 
 - origin
 
